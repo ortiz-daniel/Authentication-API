@@ -9,7 +9,7 @@ from src.utils.token import Token
 router: APIRouter = APIRouter(prefix='/users', tags=["Users"])  
 
 @router.post('/', response_model=CreateUserSchema)
-async def create_user(body: CreateUserSchema, token: str = Header(None)):
+async def create_user(body: CreateUserSchema):
     """
     Servicio que permite la creación de nuevos usuarios en la aplicación.
 
