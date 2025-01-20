@@ -22,3 +22,14 @@ class Token:
             algorithm=os.getenv('ALGORITHM')
             )
         return token
+
+    @staticmethod
+    def decode_token(token: str):
+        decoded_token = decode(
+            token,
+            os.getenv('SECRET_KEY'),
+            verify=True,
+            algorithms=[os.getenv('ALGORITHM')]
+            )
+        return decoded_token
+
