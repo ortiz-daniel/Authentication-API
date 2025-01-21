@@ -60,6 +60,6 @@ def get_sessions_history(token: str = Header(...)):
         status_code=status.HTTP_200_OK,
         content={
             'message': 'Historial de sesiones',
-            'logins': logins
+            'history_sessions': logins
         }
     )
