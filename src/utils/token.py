@@ -1,4 +1,4 @@
-from jwt import decode, encode, ExpiredSignatureError
+from jwt import decode, encode, ExpiredSignatureError, DecodeError
 from dotenv import load_dotenv
 import os
 import datetime
@@ -25,7 +25,7 @@ class Token:
         return token
 
     @staticmethod
-    def decode_token(token: str):
+    def decode_token(token: str) -> dict:
 
         try:
             decoded_token = decode(
@@ -34,8 +34,12 @@ class Token:
                 algorithms=[os.getenv('ALGORITHM')]
                 )
         except ExpiredSignatureError as e:
-            # Manejo correcto de este error
-            return {'error': 'Token inválido'}
-        
+            return {
+                'error': 'Le fecha de expiración del token ha sido superada. Intenta iniciar sesión nuevamente.'
+                }
+        except DecodeError as e:
+            return {
+                'error': 'El token es inválido. Intenta iniciar sesión nuevamente.'
+                }
         return decoded_token
 
