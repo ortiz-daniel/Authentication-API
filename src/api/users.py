@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 from src.schemas.users import CreateUserSchema
 from src.database.crud import insert_user, get_logins_by_user
 from src.database.models import User
-from src.utils.token import Token
+from src.utils.token import Token, TokenDependencie
 
 router: APIRouter = APIRouter(prefix='/users', tags=["Users"]) 
 
@@ -20,7 +20,7 @@ async def create_user(body: CreateUserSchema):
         JSON: Mensaje de éxito, usuario y token de autenticación.
     """
 
-    body_to_dict: dict = body.dict()
+    body_to_dict: dict = body.model_dump()
 
     user_inserted: User = insert_user(body_to_dict)
 
@@ -34,7 +34,7 @@ async def create_user(body: CreateUserSchema):
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=response)
 
 @router.get('/sessions')
-def get_sessions_history(token: str = Header(...)):
+def get_sessions_history(token: str = Depends(TokenDependencie())):
     """
     Servicio que permite obtener el historial de sesiones de un usuario autenticado.
 
