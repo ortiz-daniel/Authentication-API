@@ -70,7 +70,7 @@ http://localhost:3000/docs
 Para consultar el primer endpoint de la API, puedes utilizar el siguiente comando:
 
 ```bash
-curl -X GET "http://localhost:3000/api/v1/users" -H "accept: application/json" -H "Content-Type: application/json" -d '{"email": "jonhdoe@mail.com", "password": "helloworld!"}'
+curl -X GET "http://localhost:3000/users" -H "accept: application/json" -H "Content-Type: application/json" -H 'accept: application/json' -d '{"email": "jonhdoe@mail.com", "password": "helloworld!"}'
 ```
 
 ## Ejecutando las Pruebas Unitarias
