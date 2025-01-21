@@ -43,12 +43,12 @@ def get_logins_by_user(email: str) -> List[LoginSessions]:
 
     user = get_user_by_email(email)
 
-    user_id = user.id
-
     with Session(engine) as session:
-        logins = session.query(LoginSessions).filter(LoginSessions.user_id == user_id).all()
-
-    return logins
+        logins: List[LoginSessions] = session.query(LoginSessions).filter(LoginSessions.user_id == user.id).all()
+    
+    data = list(map(lambda x: x.dict(), logins))
+    
+    return data
 
 
 def insert_login_session(email: str, success: bool) -> LoginSessions:
@@ -61,7 +61,7 @@ def insert_login_session(email: str, success: bool) -> LoginSessions:
         LoginSessions: Devuelve la sesión de login creada en la base de datos.
     """
 
-    user = get_user_by_email(user_email)
+    user = get_user_by_email(email)
 
     login = LoginSessions(user=user, success=success)
 
