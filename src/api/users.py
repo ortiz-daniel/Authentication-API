@@ -1,9 +1,9 @@
-from fastapi import APIRouter, status, Header, Depends
+from fastapi import APIRouter, Depends, Header, status
 from fastapi.responses import JSONResponse
 
-from src.schemas.users import CreateUserSchema
-from src.database.crud import insert_user, get_logins_by_user
+from src.database.crud import get_logins_by_user, insert_user
 from src.database.models import User
+from src.schemas.users import CreateUserSchema
 from src.utils.token import Token, TokenDependencie
 
 router: APIRouter = APIRouter(prefix='/users', tags=["Users"]) 

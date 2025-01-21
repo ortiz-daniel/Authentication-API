@@ -1,8 +1,8 @@
 from fastapi import FastAPI
+from sqlmodel import SQLModel
 
 from src.api.users import router as users_router
 from src.api.auth import router as auth_router
-from sqlmodel import SQLModel
 from src.database.models import engine
 
 app = FastAPI()

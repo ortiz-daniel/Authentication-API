@@ -1,5 +1,6 @@
-from sqlmodel import Field, SQLModel, create_engine, Relationship
 import datetime
+
+from sqlmodel import Field, Relationship, SQLModel, create_engine
 
 class User(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)

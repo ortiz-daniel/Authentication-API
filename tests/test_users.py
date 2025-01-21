@@ -1,10 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
+from sqlmodel import SQLModel
 
 from main import app
 from src.database.models import engine, User, LoginSessions
-
-from sqlmodel import SQLModel
 
 client = TestClient(app)
 

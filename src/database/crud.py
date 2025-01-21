@@ -1,7 +1,8 @@
-from src.database.models import User, engine, LoginSessions
 from typing import List
 
 from sqlmodel import Session
+
+from src.database.models import User, engine, LoginSessions
 
 def insert_user(user: dict) -> User:
     """
