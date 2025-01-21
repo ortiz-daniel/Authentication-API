@@ -67,17 +67,16 @@ http://localhost:3000/docs
 
 ## Ejecutando las Pruebas Unitarias
 
-Para ejecutar las pruebas unitarias de la API, asegúrate de tener instalado el framework de pruebas que estés utilizando (por ejemplo, pytest). Luego, ejecuta el siguiente comando desde la raíz del repositorio:
+Para ejecutar las pruebas unitarias de la API, asegúrate de tener instalado el framework de pruebas: pytest.
+Luego, ejecuta el siguiente comando desde la raíz del repositorio:
 
 ```bash
 pytest
 ```
 
-### Personalizando la ejecución de pruebas
-
 Si deseas ejecutar pruebas específicas, puedes utilizar las opciones de línea de comandos de pytest. Por ejemplo:
 
-- **Ejecutar pruebas en un módulo específico:**
+- **Ejecutar pruebas:**
 
 ```bash
 pytest tests/test_users.py
