@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, Header, status
 from fastapi.responses import JSONResponse
+from typing import Union
 
 from src.database.crud import get_logins_by_user, insert_user
 from src.database.models import User
@@ -22,13 +23,16 @@ async def create_user(body: CreateUserSchema):
 
     body_to_dict: dict = body.model_dump()
 
-    user_inserted: User = insert_user(body_to_dict)
+    operation_response: Union[User, dict] = insert_user(body_to_dict)
+
+    if type (operation_response) == dict:
+        return JSONResponse(status_code=status.HTTP_400_BAD_REQUEST, content=operation_response)
 
     token: str = Token.encode_token(body_to_dict)
 
     response: dict = {
         'message': 'Usuario creado con éxito',
-        'user': user_inserted.dict(exclude={'password'}),
+        'user': operation_response.dict(exclude={'password'}),
         'token': token
         }
     return JSONResponse(status_code=status.HTTP_201_CREATED, content=response)
