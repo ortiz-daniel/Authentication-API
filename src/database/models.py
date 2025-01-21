@@ -1,4 +1,5 @@
 from sqlmodel import Field, SQLModel, create_engine, Relationship
+import datetime
 
 class User(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
@@ -12,6 +13,7 @@ class User(SQLModel, table=True):
 class LoginSessions(SQLModel, table=True):
     id: int = Field(default=None, primary_key=True)
     success: bool = Field(default=True)
+    date: str | None = Field(max_length=64, default=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
     
     user_id: int = Field(foreign_key="user.id")
     user: User = Relationship(back_populates="login_sessions")
