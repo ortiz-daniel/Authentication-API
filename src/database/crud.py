@@ -1,10 +1,11 @@
-from typing import List
+from typing import List, Union
 
 from sqlmodel import Session
+from sqlite3 import IntegrityError
 
 from src.database.models import User, engine, LoginSessions
 
-def insert_user(user: dict) -> User:
+def insert_user(user: dict) -> Union[User, dict]:
     """
     Args:
         user (dict): Recibe un diccionario con los datos del usuario a crear.
@@ -12,12 +13,16 @@ def insert_user(user: dict) -> User:
     Returns:
         User: Devuelve el usuario creado en la base de datos.
     """
-    user = User(**user)
+    try:
 
-    with Session(engine) as session:
-        session.add(user)
-        session.commit()
-        session.refresh(user)
+        user = User(**user)
+
+        with Session(engine) as session:
+            session.add(user)
+            session.commit()
+            session.refresh(user)
+    except IntegrityError:
+        return {'message': 'El usuario ya se encuentra registrado, por favor inicie sesión o cree una cuenta nueva.'}    
 
     return user
 
