@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ### 1. Añadir un archivo de variables de entorno
 
-Antes de iniciar el contenedor, asegúrate de añadir el archivo de variables de entorno a la raíz del proyecto con el siguiente comando (puedes crearlo manualmente):
+Antes de iniciar el contenedor, asegúrate de añadir el archivo de variables de entorno a la raíz del proyecto con el siguiente comando (también puedes crearlo manualmente):
 
 ```bash
 touch .env.dev
@@ -63,6 +63,14 @@ Una vez que los contenedores estén en ejecución, podrás acceder a la document
 
 ```bash
 http://localhost:3000/docs
+```
+
+### 4. Consultando el primer endpoint
+
+Para consultar el primer endpoint de la API, puedes utilizar el siguiente comando:
+
+```bash
+curl -X GET "http://localhost:3000/api/v1/users" -H "accept: application/json" -H "Content-Type: application/json" -d '{"email": "jonhdoe@mail.com", "password": "helloworld!"}'
 ```
 
 ## Ejecutando las Pruebas Unitarias
