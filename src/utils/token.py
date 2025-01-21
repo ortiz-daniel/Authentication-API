@@ -10,7 +10,6 @@ class Token:
 
     @staticmethod
     def encode_token(body: dict) -> str:
-        print(os.getenv('TOKEN_EXP_IN_MINUTES'))
         payload: dict = {
             **body,
             "exp": datetime.datetime.now(timezone.utc) + datetime.timedelta(
