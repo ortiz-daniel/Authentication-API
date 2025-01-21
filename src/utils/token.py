@@ -1,4 +1,6 @@
 from jwt import decode, encode, ExpiredSignatureError, DecodeError
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi import Request
 from dotenv import load_dotenv
 import os
 import datetime
@@ -42,3 +44,15 @@ class Token:
                 }
         return decoded_token
 
+class TokenDependencie(HTTPBearer):
+    def __init__(self):
+        super(TokenDependencie, self).__init__()
+    
+    async def __call__(self, request: Request):
+        credentials: HTTPAuthorizationCredentials = await super(TokenDependencie, self).__call__(request)
+        if credentials:
+            if not credentials.scheme == 'Bearer':
+                raise HTTPException(status_code=403, detail='El esquema del token es inválido.')
+            return credentials.credentials
+        else:
+            raise HTTPException(status_code=403, detail='El token es inválido.')
