@@ -5,12 +5,10 @@
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://tu-repositorio.git
+git clone https://github.com/ortiz-daniel/Authentication-API.git
 ```
 
 ### 2. Crear un entorno virtual (recomendado)
-
-Un entorno virtual te permite aislar las dependencias de tu proyecto y evitar conflictos con otras instalaciones de Python.
 
 #### Crear un entorno virtual con `venv` en Linux/macOS
 
@@ -34,12 +32,6 @@ Una vez activado el entorno virtual, instala las dependencias listadas en `requi
 pip install -r requirements.txt
 ```
 
-### Explicación
-
-- **Clonar el repositorio**: Este comando descarga el código fuente de tu proyecto desde tu repositorio de Git.
-- **Crear un entorno virtual**: Un entorno virtual proporciona un espacio aislado para instalar paquetes de Python. Esto evita conflictos entre las versiones de los paquetes y mantiene tu entorno de desarrollo limpio.
-- **Instalar dependencias**: El comando `pip install -r requirements.txt` lee el archivo `requirements.txt` que contiene una lista de los paquetes necesarios para tu proyecto y los instala en el entorno virtual activo.
-
 ## Ejecutando la aplicación con Docker Compose
 
 ### 1. Añadir un archivo de variables de entorno
@@ -50,11 +42,11 @@ Antes de iniciar el contenedor, asegúrate de añadir el archivo de variables de
 touch .env.dev
 ```
 
-Edita el archivo `.env.dev` para reemplazar los valores de las variables de entorno con los adecuados para tu entorno, fueron compartidos en el mail de entrega del proyecto.
+Edita el archivo `.env.dev` para reemplazar los valores de las variables de entorno con los adecuados para tu entorno, fueron compartidos en el mail de entrega del proyecto, simplemente copia y pega los valores.
 
 ### 2. Construir e iniciar los contenedores
 
-Ejecuta el siguiente comando desde el directorio raíz de tu proyecto:
+Ejecuta el siguiente comando desde el directorio raíz del repositorio:
 
 ```bash
 docker-compose up --build
@@ -88,7 +80,7 @@ Si deseas ejecutar pruebas específicas, puedes utilizar las opciones de línea 
 - **Ejecutar pruebas en un módulo específico:**
 
 ```bash
-pytest tests/test_api.py
+pytest tests/test_users.py
 ```
 
 - **Ver el resultado en un formato más detallado:**
