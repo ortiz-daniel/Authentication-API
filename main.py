@@ -13,10 +13,6 @@ app.include_router(auth_router)
 def create_tables():
     SQLModel.metadata.create_all(engine)
 
-@app.get('/')
-async def main():
-    return {"message": "Hello World"}
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=3000)
